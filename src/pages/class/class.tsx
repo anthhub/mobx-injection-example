@@ -5,11 +5,14 @@ import { observer } from 'mobx-react'
 import { GlobalStore } from '../../store/global'
 import Child from './child'
 import { LocalStore } from '../../store/local'
-import { injection, injectedComponent } from '../../lib'
-import { pageHooker } from '../hooks/hooks'
+import { injection } from '../../lib'
+import { page } from '../../lib/api/page'
+import { withRouter } from 'react-router-dom'
+import { plusRouter } from '../../lib/api/plusRouter'
 
+@plusRouter
+@page
 @observer
-@injectedComponent
 class Klass extends React.Component {
   // @injection(GlobalStore, { name: 'Klass' })
   // globalStore!: GlobalStore
@@ -32,7 +35,9 @@ class Klass extends React.Component {
   render() {
     console.log('%c%s', 'color: #259b24', 'ANTH LOG: Klass -> render -> render')
     // const { username, operateCounter } = this.globalStore
-    const { counter } = this.localStore
+    const {
+      localStore: { counter },
+    } = this
     return (
       <div className="App">
         Klass
@@ -44,4 +49,4 @@ class Klass extends React.Component {
   }
 }
 
-export default Klass
+export default Klass as any

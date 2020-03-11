@@ -3,12 +3,12 @@ import React from 'react'
 import { observer } from 'mobx-react'
 
 import { LocalStore } from '../../store/local'
-import { injectedComponent, injection } from '../../lib'
+import { injection } from '../../lib'
+import { withRouter } from 'react-router-dom'
+import { plusRouter } from '../../lib/api/plusRouter'
 
-
-
+@plusRouter
 @observer
-@injectedComponent
 class Klass extends React.Component {
   @injection(LocalStore, { name: 'Klass Child' })
   localStore!: LocalStore
@@ -27,7 +27,9 @@ class Klass extends React.Component {
 
   render() {
     console.log('%c%s', 'color: #259b24', 'ANTH LOG:  Klass Child -> render -> render')
-    const { increment } = this.localStore
+    const {
+      localStore: { increment },
+    } = this
     return (
       <div className="App">
         child

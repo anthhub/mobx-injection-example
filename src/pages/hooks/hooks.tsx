@@ -8,17 +8,17 @@ import { LocalStore } from '../../store/local'
 import Child from './child'
 import { useInjection } from '../../lib'
 import { useParams, useHistory } from 'react-router-dom'
-
+import { page } from '../../lib/api/page'
 
 function Hooks() {
-  const history = useHistory()
-  console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> history', history)
-  const { id = '' } = useParams()
-  console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> id', id)
+  // const history = useHistory()
+  // console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> history', history)
+  // const { id = '' } = useParams()
+  // console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> id', id)
   // const { username, operateCounter } = useInjection(GlobalStore, { name: 'Hooks' })
 
   debugger
-  const { counter } = useInjection(LocalStore, [id], { name: 'Hooks' })
+  const { counter } = useInjection(LocalStore, { name: 'Hooks' })
 
   console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> render')
 
@@ -40,4 +40,4 @@ function Hooks() {
   )
 }
 
-export default pageHooker(observer(Hooks))
+export default page(observer(Hooks))

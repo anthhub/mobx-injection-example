@@ -17,8 +17,6 @@ function App() {
             <Route
               path="/hooks/:id"
               component={() => {
-                console.log('%c%s', 'color: #87249b', 'ANTH LOG: App -> Route 执行次数')
-
                 return <Hooks />
               }}
             />
@@ -30,8 +28,6 @@ function App() {
             <Route
               path="/"
               component={() => {
-                console.log('%c%s', 'color: #9b7524', 'ANTH LOG: App -> Route 根组件渲染')
-
                 return <div style={{ padding: '20px' }}>首页</div>
               }}
             />
