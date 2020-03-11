@@ -3,7 +3,8 @@ import React from 'react'
 import { observer } from 'mobx-react'
 
 import { LocalStore } from '../../store/local'
-import { injectedComponent, injection } from 'mobx-injection'
+import { injectedComponent, injection } from '../../lib'
+
 
 
 @observer

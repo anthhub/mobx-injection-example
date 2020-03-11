@@ -1,6 +1,5 @@
 import { observable } from 'mobx'
-
-import { store } from 'mobx-injection'
+import { store } from '../lib'
 
 // 全局store 作用scope为application 即全局有效
 @store('application')

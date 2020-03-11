@@ -5,8 +5,8 @@ import { observer } from 'mobx-react'
 import { GlobalStore } from '../../store/global'
 import Child from './child'
 import { LocalStore } from '../../store/local'
-import { injectedComponent, injection } from 'mobx-injection'
-
+import { injection, injectedComponent } from '../../lib'
+import { pageHooker } from '../hooks/hooks'
 
 @observer
 @injectedComponent
@@ -37,9 +37,7 @@ class Klass extends React.Component {
       <div className="App">
         Klass
         <header className="App-header">计数: {counter}</header>
-        <header className="App-header">
-          {/* {username}总共操作了{operateCounter}次 */}
-        </header>
+        <header className="App-header">{/* {username}总共操作了{operateCounter}次 */}</header>
         <Child />
       </div>
     )
