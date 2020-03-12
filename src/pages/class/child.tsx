@@ -3,12 +3,11 @@ import React from 'react'
 import { observer } from 'mobx-react'
 
 import { LocalStore } from '../../store/local'
-import { injection } from '../../lib'
-import { withRouter } from 'react-router-dom'
-import { plusRouter } from '../../lib/api/plusRouter'
 
-@plusRouter
+// import injectedComponent from '../../lib/api/injectedComponent'
+import { injection, plusRouter } from 'mobx-injection'
 @observer
+@plusRouter
 class Klass extends React.Component {
   @injection(LocalStore, { name: 'Klass Child' })
   localStore!: LocalStore

@@ -2,15 +2,9 @@ import 'reflect-metadata'
 
 import { Constructor, storeScopeTypeSymbol, PlainObject } from '../core/meta'
 import { Scope, getInjector } from '../core/Injector'
-import { withRouter } from 'react-router-dom'
-
-const injector = getInjector()
 
 export default <T>(InjectedStoreClass?: Constructor<T>, args: ((props: any) => PlainObject) | PlainObject = {}): any => (target: any, property: string) => {
   const selfScope = target[storeScopeTypeSymbol]
-  console.log('%c%s', 'color: #9b2495', 'ANTH LOG: target', target)
-  target = withRouter(target)
-  console.log('%c%s', 'color: #9b2495', 'ANTH LOG: target', target)
 
   if (selfScope && selfScope === 'session') {
     throw Error(`session store forbid to be inject into session store!`)
@@ -18,6 +12,11 @@ export default <T>(InjectedStoreClass?: Constructor<T>, args: ((props: any) => P
 
   if (!InjectedStoreClass) {
     InjectedStoreClass = Reflect.getMetadata('design:type', target, property)
+    if (!InjectedStoreClass) {
+      throw new SyntaxError(
+        'You must pass a Class for injection while you are not using typescript!' + 'Or you may need to add "emitDecoratorMetadata: true" configuration to your tsconfig.json'
+      )
+    }
   }
 
   // tslint:disable-next-line: no-unnecessary-type-assertion
@@ -38,18 +37,9 @@ export default <T>(InjectedStoreClass?: Constructor<T>, args: ((props: any) => P
       if (typeof args === 'function') {
         params = args(this)
       }
+      const injector = getInjector()
 
-      return new Proxy(
-        {},
-        {
-          get(target, key) {
-            console.log('%c%s', 'color: #244a9b', 'ANTH LOG: get -> key', key)
-            const store = injector.get(clazz, scope, params) as any
-            console.log('%c%s', 'color: #244a9b', 'ANTH LOG: get -> store', store)
-            return store[key]
-          },
-        }
-      )
+      return injector.get(clazz, scope, params)
     },
     // @formatter:off
     // tslint:disable-next-line

@@ -6,18 +6,12 @@ import { GlobalStore } from '../../store/global'
 import { LocalStore } from '../../store/local'
 
 import Child from './child'
-import { useInjection } from '../../lib'
-import { useParams, useHistory } from 'react-router-dom'
-import { page } from '../../lib/api/page'
+import { useInjection } from 'mobx-injection'
+
 
 function Hooks() {
-  // const history = useHistory()
-  // console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> history', history)
-  // const { id = '' } = useParams()
-  // console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> id', id)
-  // const { username, operateCounter } = useInjection(GlobalStore, { name: 'Hooks' })
+  const { username, operateCounter } = useInjection(GlobalStore, { name: 'Hooks' })
 
-  debugger
   const { counter } = useInjection(LocalStore, { name: 'Hooks' })
 
   console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> render')
@@ -34,10 +28,12 @@ function Hooks() {
     <div className="App">
       Hooks
       <header className="App-header">计数: {counter}</header>
-      <header className="App-header">{/* {username}总共操作了{operateCounter}次 */}</header>
+      <header className="App-header">
+        {username}总共操作了{operateCounter}次{' '}
+      </header>
       <Child />
     </div>
   )
 }
 
-export default page(observer(Hooks))
+export default observer(Hooks)

@@ -34,9 +34,6 @@ class Injector {
       })
       container.set(InjectedStoreClass, instance)
     }
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Injector -> this.appContainer', this.appContainer)
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Injector -> this.sessContainer', this.sessContainer)
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Injector -> instance', instance)
 
     return instance
   }

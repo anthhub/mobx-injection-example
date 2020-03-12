@@ -5,17 +5,17 @@ import { observer } from 'mobx-react'
 import { GlobalStore } from '../../store/global'
 import Child from './child'
 import { LocalStore } from '../../store/local'
-import { injection } from '../../lib'
-import { page } from '../../lib/api/page'
-import { withRouter } from 'react-router-dom'
-import { plusRouter } from '../../lib/api/plusRouter'
+import { injection, plusRouter } from 'mobx-injection'
+
+interface IP {
+  name: string
+}
 
 @plusRouter
-@page
 @observer
-class Klass extends React.Component {
-  // @injection(GlobalStore, { name: 'Klass' })
-  // globalStore!: GlobalStore
+class Klass extends React.Component<IP> {
+  @injection(GlobalStore, { name: 'Klass' })
+  globalStore!: GlobalStore
 
   @injection(LocalStore, { name: 'Klass' })
   localStore!: LocalStore
@@ -34,7 +34,7 @@ class Klass extends React.Component {
 
   render() {
     console.log('%c%s', 'color: #259b24', 'ANTH LOG: Klass -> render -> render')
-    // const { username, operateCounter } = this.globalStore
+    const { username, operateCounter } = this.globalStore
     const {
       localStore: { counter },
     } = this
@@ -42,7 +42,9 @@ class Klass extends React.Component {
       <div className="App">
         Klass
         <header className="App-header">计数: {counter}</header>
-        <header className="App-header">{/* {username}总共操作了{operateCounter}次 */}</header>
+        <header className="App-header">
+          {username}总共操作了{operateCounter}次{' '}
+        </header>
         <Child />
       </div>
     )
@@ -50,3 +52,5 @@ class Klass extends React.Component {
 }
 
 export default Klass as any
+
+export const Index = () => <Klass name="" />
