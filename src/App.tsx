@@ -1,24 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 // import logo from './logo.svg';
 import './App.css'
 
 import { observer } from 'mobx-react'
 
-import { Route, BrowserRouter, HashRouter, Switch, Link } from 'react-router-dom'
+import { Route, BrowserRouter, Switch, Link } from 'react-router-dom'
 import Hooks from './pages/hooks/hooks'
 import Klass from './pages/class/class'
-import InjectedRouter from 'mobx-injection'
+import { InjectedRouter } from 'mobx-injection'
 
 function App() {
-  window.addEventListener(
-    'popstate',
-    () => {
-      debugger
-      console.log('%c%s', 'color: #2c249b', 'ANTH LOG: location.pathname', window.location.pathname)
-    },
-    false
-  )
-
   return (
     <div className="App">
       <header className="App-header">

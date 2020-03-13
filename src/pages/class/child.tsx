@@ -4,28 +4,15 @@ import { observer } from 'mobx-react'
 
 import { LocalStore } from '../../store/local'
 
-// import injectedComponent from '../../lib/api/injectedComponent'
 import { injection, plusRouter } from 'mobx-injection'
-@observer
+
 @plusRouter
+@observer
 class Klass extends React.Component {
   @injection(LocalStore, { name: 'Klass Child' })
   localStore!: LocalStore
 
-  componentWillMount() {
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Klass Child -> componentWillMount -> componentWillMount')
-  }
-
-  componentDidMount() {
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Klass Child -> componentWillMount -> componentWillMount')
-  }
-
-  componentWillUnmount() {
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Klass Child -> componentWillUnmount -> componentWillUnmount')
-  }
-
   render() {
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG:  Klass Child -> render -> render')
     const {
       localStore: { increment },
     } = this

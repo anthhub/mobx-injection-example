@@ -20,20 +20,7 @@ class Klass extends React.Component<IP> {
   @injection(LocalStore, { name: 'Klass' })
   localStore!: LocalStore
 
-  componentWillMount() {
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Klass -> componentWillMount -> componentWillMount')
-  }
-
-  componentDidMount() {
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Klass  -> componentWillMount -> componentWillMount')
-  }
-
-  componentWillUnmount() {
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Klass -> componentWillUnmount -> componentWillUnmount')
-  }
-
   render() {
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Klass -> render -> render')
     const { username, operateCounter } = this.globalStore
     const {
       localStore: { counter },

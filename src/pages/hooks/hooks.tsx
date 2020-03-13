@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { observer } from 'mobx-react'
 import { GlobalStore } from '../../store/global'
@@ -8,21 +8,10 @@ import { LocalStore } from '../../store/local'
 import Child from './child'
 import { useInjection } from 'mobx-injection'
 
-
 function Hooks() {
   const { username, operateCounter } = useInjection(GlobalStore, { name: 'Hooks' })
 
   const { counter } = useInjection(LocalStore, { name: 'Hooks' })
-
-  console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> render')
-
-  useEffect(() => {
-    console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> mount')
-
-    return () => {
-      console.log('%c%s', 'color: #259b24', 'ANTH LOG: Hooks -> unmount')
-    }
-  })
 
   return (
     <div className="App">
