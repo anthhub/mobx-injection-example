@@ -6,7 +6,8 @@ import { GlobalStore } from '../../store/global'
 import { LocalStore } from '../../store/local'
 
 import Child from './child'
-import { useInjection } from 'mobx-injection'
+import { useInjection } from '../../src'
+
 
 function Hooks() {
   const { username, operateCounter } = useInjection(GlobalStore, { name: 'Hooks' })

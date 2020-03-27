@@ -7,7 +7,7 @@ import { observer } from 'mobx-react'
 import { Route, BrowserRouter, Switch, Link } from 'react-router-dom'
 import Hooks from './pages/hooks/hooks'
 import Klass from './pages/class/class'
-import { InjectedRouter } from 'mobx-injection'
+import { InjectedRouter } from './src'
 
 function App() {
   return (
@@ -16,6 +16,12 @@ function App() {
         <BrowserRouter>
           <InjectedRouter>
             <Switch>
+              <Route
+                path="/hooks/:id/:sid"
+                component={() => {
+                  return <Hooks />
+                }}
+              />
               <Route
                 path="/hooks/:id"
                 component={() => {
@@ -39,6 +45,7 @@ function App() {
             <Link to="/hooks">to hooks</Link>
             <Link to="/hooks/1">to hooks1</Link>
             <Link to="/hooks/2">to hooks2</Link>
+            <Link to="/hooks/2/aaa">to hooks/2/aaa</Link>
 
             <div></div>
             <Link to="/class">to class</Link>

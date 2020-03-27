@@ -1,11 +1,11 @@
 import React from 'react'
-
+import 'reflect-metadata'
 import { observer } from 'mobx-react'
 
 import { GlobalStore } from '../../store/global'
 import Child from './child'
 import { LocalStore } from '../../store/local'
-import { injection, plusRouter } from 'mobx-injection'
+import { plusRouter, injection } from '../../src'
 
 interface IP {
   name: string
