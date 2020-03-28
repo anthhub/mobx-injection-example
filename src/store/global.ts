@@ -18,8 +18,8 @@ export class GlobalStore extends StoreBase<GlobalStore, GlobalStoreActions> {
   @observable operateCounter = 0
 
   plus = async () => {
+    this.setProps({ operateCounter: ++this.operateCounter }, GlobalStoreActions.change_operateCounter)
     this.setProps({ operateCounter: ++this.operateCounter })
-    this.setProps({ operateCounter: ++this.operateCounter })
-    this.setProps({ operateCounter: ++this.operateCounter })
+    this.setProps({ operateCounter: ++this.operateCounter, username: this.username + '1' })
   }
 }

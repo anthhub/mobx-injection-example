@@ -13,9 +13,11 @@ export default <T>(InjectedStoreClass?: Constructor<T>, args: ((props: any) => P
     }
   }
 
-  // const originMiddlewares = Reflect.getMetadata('middlewares', target, key) || []
-  // originMiddlewares.push(middleware)
-  // Reflect.defineMetadata('middlewares', originMiddlewares, target, key)
+  const injectedStores = Reflect.getMetadata('injectedStores', target, property) || []
+  injectedStores.push(InjectedStoreClass)
+  Reflect.defineMetadata('injectedStores', injectedStores, target, property)
+
+  const injectedStores1 = Reflect.getMetadata('injectedStores', target, property) || []
 
   // tslint:disable-next-line: no-unnecessary-type-assertion
   const clazz = InjectedStoreClass as any

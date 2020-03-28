@@ -147,6 +147,7 @@ export default abstract class StoreBase<T = PlainObject, U extends string = stri
 
   @action.bound
   private updater(updaterObject: KVProps<K, T>) {
+    console.log('%c%s', 'color: #259b24', 'ANTH LOG: StoreBase<T -> updater -> updaterObject', updaterObject)
     const indexer = (this as unknown) as PlainObject
     Object.keys(updaterObject).forEach(key => {
       const value = updaterObject[key]

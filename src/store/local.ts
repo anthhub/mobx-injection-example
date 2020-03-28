@@ -12,7 +12,6 @@ import { store, injection } from '../src'
 @store('session', { persist: true })
 export class LocalStore extends StoreBase<LocalStore> {
   @injection(GlobalStore, () => {
-    debugger
     return {}
   })
   globalStore!: GlobalStore
